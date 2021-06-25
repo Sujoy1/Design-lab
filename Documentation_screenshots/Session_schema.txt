@@ -1,0 +1,20 @@
+
+---- Session table --
+
+sesion id
+name
+anouncement date
+date/time
+min students
+price
+mentors
+sessiontype(referral : with or without)
+interaction_type
+
+
+--- Participation ---
+
+Array of Object ID
+
+
+

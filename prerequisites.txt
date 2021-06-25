@@ -1,0 +1,37 @@
+date: 2.06.2021
+
+*Sign in(mentor + mentee)
+*Sign up(mentor + mentee)
+
+
+///  *mentee registration
+
+* name
+*email
+*phone number
+*institute name(not required)
+*enrollment number(not required)
+*address
+*password
+
+
+
+
+///  mentor registration 
+*name
+*email
+*phone
+*company name
+*enrollment name
+*address
+*city 
+*state
+*country
+*employee id or company id card
+*govt. approved id card
+
+
+
+// both mentee and mentor sign in
+*email
+*password

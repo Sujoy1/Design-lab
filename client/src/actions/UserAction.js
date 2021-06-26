@@ -255,6 +255,8 @@ export const detailsUserMentor = () => async (dispatch, getState) => {
   }
 };
 
+// update mentor verification
+
 // export const detailsMentor = (email) => async (dispatch, getState) => {
 //   dispatch({ type: USER_MENTOR_DETAILS_REQUEST, payload: email });
 //   const {

@@ -307,33 +307,6 @@ export default function RegisterScreen(props) {
     }
   }, [props.history, redirect, userInfoMentor]);
 
-  // const [loadingUpload, setLoadingUpload] = useState(false);
-  // const [errorUpload, setErrorUpload] = useState("");
-
-  // const uploadFileHandler = async (e) => {
-  //   const file = e.target.files[0];
-
-  //   const bodyFormData = new FormData();
-  //   bodyFormData.append("image", file);
-  //   setLoadingUpload(true);
-  //   try {
-  //     const { data } = await Axios.post(
-  //       "/api/companyid",
-  //       bodyFormData
-  //       // {
-  //       //   headers: {
-  //       //     "Content-type": "multipart/form-data",
-  //       //     Authorization: `Bearer ${userInfoMentor.token}`,
-  //       //   },
-  //     );
-  //     setemployeeIDimage(data);
-  //     setLoadingUpload(false);
-  //   } catch (error) {
-  //     setErrorUpload(error.message);
-  //     setLoadingUpload(false);
-  //   }
-  // };
-
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
@@ -408,57 +381,6 @@ export default function RegisterScreen(props) {
           ></input>
         </div>
 
-        {/* <div>
-          <div>
-            <input
-              id="image"
-              type="text"
-              value={employeeIDimage}
-              placeholder="Image"
-              onChange={(e) => setemployeeIDimage(e.target.value)}
-            ></input>
-
-            <div>
-              <label htmlFor="imageFile">Employee ID Card</label>
-              <input
-                type="file"
-                id="imageFile"
-                label="choose Image"
-                onChange={uploadFileHandler}
-              ></input>
-              {loadingUpload && <LoadingBox></LoadingBox>}
-              {errorUpload && (
-                <MessageBox variant="danger">{errorUpload}</MessageBox>
-              )}
-            </div>
-          </div>
-        </div> */}
-        {/* <div>
-          <div>
-            <div>
-              <input
-                id="image"
-                type="text"
-                value={governmentIDimage}
-                placeholder="Government Approved ID Card"
-                onChange={(e) => setgovernmentIDimage(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <label htmlFor="imageFile">Government Approved ID Card</label>
-              <input
-                type="file"
-                id="imageFile"
-                label="choose Image"
-                onChange={uploadFileHandler}
-              ></input>
-              {loadingUpload && <LoadingBox></LoadingBox>}
-              {errorUpload && (
-                <MessageBox variant="danger">{errorUpload}</MessageBox>
-              )}
-            </div>
-          </div>
-        </div> */}
         <div>
           <label htmlFor="password">Password</label>
           <input
@@ -483,7 +405,7 @@ export default function RegisterScreen(props) {
         <div>
           <label />
           <button className="primary" type="submit">
-            Register
+            Continue
           </button>
         </div>
         <div>

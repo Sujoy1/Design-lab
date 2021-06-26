@@ -62,6 +62,8 @@ mentorRouter.post(
       companyName: req.body.companyName,
       employeeIDNumber: req.body.employeeIDNumber,
       address: req.body.address,
+      verificationstatus: req.body.verificationstatus,
+      // isAdmin: req.body.address,
       // employeeIDimage: req.body.employeeIDimage,
       // governmentIDimage: req.body.governmentIDimage,
     });
@@ -76,6 +78,8 @@ mentorRouter.post(
       comapanyName: createdUser.comapanyName,
       employeeIDNumber: createdUser.employeeIDNumber,
       address: createdUser.address,
+      isAdmin: createdUser.isAdmin,
+      verificationstatus: createdUser.verificationstatus,
       // employeeIDimage: createdUser.employeeIDimage,
       // governmentIDimage: createdUser.governmentIDimage,
       token: generateToken(createdUser),
@@ -152,4 +156,66 @@ mentorRouter.get(
     }
   })
 );
+
+mentorRouter.get(
+  `/mentorlist/:id`,
+  // isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const userMentor = await Mentor.findById(req.params.id);
+    if (userMentor) {
+      res.send(userMentor);
+    } else {
+      res.status(404).send({ message: "Mentor Not Found" });
+    }
+  })
+);
+
+// edit mentor
+
+mentorRouter.put(
+  "/mentorlist/:id",
+
+  expressAsyncHandler(async (req, res) => {
+    const mentor = await Mentor.findById(req.params.id);
+    if (mentor) {
+      mentor.name = req.body.name || mentor.name;
+      mentor.email = req.body.email || mentor.email;
+      mentor.mobilenumber = req.body.mobilenumber || mentor.mobilenumber;
+      mentor.companyName = req.body.companyName || mentor.companyName;
+      mentor.employeeIDNumber =
+        req.body.employeeIDNumber || mentor.employeeIDNumber;
+      mentor.address = req.body.address || mentor.address;
+      mentor.isAdmin = Boolean(req.body.isAdmin);
+      mentor.verificationstatus = Boolean(req.body.verificationstatus);
+      const updatedMentor = await mentor.save();
+      res.send({ message: "Mentor Updated", mentor: updatedMentor });
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
+  })
+);
+mentorRouter.delete(
+  "/mentorlist/:id",
+
+  expressAsyncHandler(async (req, res) => {
+    const user = await Mentor.findById(req.params.id);
+    if (user) {
+      if (
+        user.email === "shuvro@admin.com" ||
+        (user.email === "tester@admin.com" && user.isAdmin === true)
+      ) {
+        res.status(400).send({ message: "Can Not Delete Admin User" });
+        return;
+      }
+      if (user.email === "owner@admin.com" && user.isAdmin === true) {
+        res.send(400).send({ message: "Can Not Delete Admin User" });
+      }
+      const deleteUser = await user.remove();
+      res.send({ message: "Mentor Deleted", deleteUser });
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
+  })
+);
+
 export default mentorRouter;

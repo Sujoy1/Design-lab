@@ -18,6 +18,8 @@ import AdminRoute from "./components/AdminRoute.js";
 import MentorListScreen from "./screen/MentorListScreen.js";
 import MenteeListScreen from "./screen/MenteeListScreen.js";
 import MentorDetailsScreen from "./screen/MentorDetailsScreen.js";
+import MentorEditScreen from "./screen/UserEDitScreen.js";
+import VideoSession from "./screen/VideoSessionScreen.js";
 
 function App() {
   const userSigninMentee = useSelector((state) => state.userSigninMentee);
@@ -125,7 +127,7 @@ function App() {
                     <Link to="/menteelist">Mentee List</Link>
                   </li>
                   <li>
-                    <Link to="/profile">Profile</Link>
+                    <Link to="/approve">Edit</Link>
                   </li>
                 </ul>
               </div>
@@ -185,9 +187,11 @@ function App() {
             exact
           ></Route>
           <AdminRoute path="/mentorlist" component={MentorListScreen} />
+          <AdminRoute path="/approve/:id" exact component={MentorEditScreen} />
           <AdminRoute path="/menteelist" component={MenteeListScreen} />
           {/* <Route path="/mentorlist" component={MentorListScreen} /> */}
           <Route path="/signin-mentor" component={LogInMentorScreen} />
+          <Route path="/videosession" component={VideoSession} />
         </main>
         <footer className="row center">All right reserved</footer>
       </div>

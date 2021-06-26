@@ -1,39 +1,24 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listUsersmentor } from "../actions/UserAction.js";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-// import { mentor_DETAILS_RESET } from "../constants/mentorConstants";
 
 export default function MentorListScreen(props) {
+  // userID = props.match.params.id
   const userListMentor = useSelector((state) => state.userListMentor);
   const { loading, error, usersmentor } = userListMentor;
-
-  //   const mentorDelete = useSelector((state) => state.mentorDelete);
-  //   const {
-  //     loading: loadingDelete,
-  //     error: errorDelete,
-  //     success: successDelete,
-  //   } = mentorDelete;
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(listUsersmentor());
-    // dispatch({ type: mentor_DETAILS_RESET });
   }, [dispatch]);
-  //   const deleteHandler = (mentor) => {
-  //     if (window.confirm("Are you sure?")) {
-  //       dispatch(deletementor(mentor._id));
-  //     }
-  //   };
+
   return (
     <div>
       <h1>Mentor List</h1>
-      {/* {loadingDelete && <LoadingBox></LoadingBox>}
-      {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
-      {successDelete && (
-        <MessageBox variant="success">mentor Deleted Successfully</MessageBox>
-      )} */}
+
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -67,10 +52,10 @@ export default function MentorListScreen(props) {
                 <td>
                   <button
                     type="button"
-                    className="small"
-                    // onClick={() => deleteHandler(mentor)}
+                    className="primary"
+                    onClick={() => props.history.push(`/approve/${mentor._id}`)}
                   >
-                    Approve
+                    Edit User
                   </button>
                 </td>
               </tr>

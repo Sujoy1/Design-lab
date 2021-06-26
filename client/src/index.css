@@ -276,3 +276,33 @@ img.large {
 .table button {
   margin: 0 0.2rem;
 }
+
+/* video live screen  */
+/* .session-screeen {
+  display: flex;
+  flex-direction: row;
+}
+
+.video-screen {
+  padding-left: 10rem;
+} */
+
+.session-screeen button {
+  margin: 3rem;
+}
+.webcam-part {
+  height: 720px;
+  width: 1280px;
+  border: 3px solid black;
+}
+.session-screeen {
+  display: flex;
+  padding: 1rem;
+  flex-direction: row;
+  justify-content: center;
+}
+.chat-screen {
+  border: 2px solid black;
+  height: 720px;
+  width: 350px;
+}

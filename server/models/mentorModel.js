@@ -15,10 +15,10 @@ const mentorSchema = new mongoose.Schema(
     companyName: { type: String, required: true },
     employeeIDNumber: { type: String, required: true },
     address: { type: String, required: true },
-    employeeIDimage: { type: String, required: true },
-    governmentIDimage: { type: String, required: true },
+    // employeeIDimage: { type: String, required: true },
+    // governmentIDimage: { type: String, required: true },
     isAdmin: { type: Boolean, default: false, required: true },
-    verificationstatus: { type: Boolean, required: false },
+    verificationstatus: { type: Boolean, default: false, required: true },
   },
   {
     timestamps: true,

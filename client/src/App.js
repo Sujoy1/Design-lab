@@ -15,11 +15,14 @@ import MenteeRoute from "./components/MenteeRoute.js";
 import MenteeJoinSessionScreen from "./screen/MenteeJoinSessionScreen.js";
 import MentorRegistration_Part_Two from "./screen/MentorRegistration_Part_Two.js";
 import AdminRoute from "./components/AdminRoute.js";
+import MentorRoute from "./components/MentorRoute.js";
 import MentorListScreen from "./screen/MentorListScreen.js";
 import MenteeListScreen from "./screen/MenteeListScreen.js";
 import MentorDetailsScreen from "./screen/MentorDetailsScreen.js";
 import MentorEditScreen from "./screen/UserEDitScreen.js";
 import VideoSession from "./screen/VideoSessionScreen.js";
+import FindSession from "./screen/FindSessionScreen.js";
+import createsession from "./screen/CreateSession.js";
 
 function App() {
   const userSigninMentee = useSelector((state) => state.userSigninMentee);
@@ -49,6 +52,7 @@ function App() {
           <div>
             <Link to="/registersession">Register Session</Link>
             <Link to="/findsession">Find Session</Link>
+            <Link to="/createsession">Create Session</Link>
 
             {userInfoMentee ? (
               <div className="dropdown">
@@ -180,6 +184,7 @@ function App() {
             component={MentorRegistration}
             exact
           ></Route>
+          <Route path="/findsession" component={FindSession} exact></Route>
           <Route path="/profile" component={MentorDetailsScreen}></Route>
           <Route
             path="/register-mentor/:id"
@@ -190,6 +195,7 @@ function App() {
           <AdminRoute path="/approve/:id" exact component={MentorEditScreen} />
           <AdminRoute path="/menteelist" component={MenteeListScreen} />
           {/* <Route path="/mentorlist" component={MentorListScreen} /> */}
+          <MentorRoute path="/createsession" component={createsession} />
           <Route path="/signin-mentor" component={LogInMentorScreen} />
           <Route path="/videosession" component={VideoSession} />
         </main>

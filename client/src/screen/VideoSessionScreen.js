@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
-import { createSocketConnectionInstance } from "./createSocketConnection";
+import { createSocketConnectionInstance } from "./createSocketConnection.js";
 
 function VideoSessionScreen(props) {
   let socketInstance = useRef(null);

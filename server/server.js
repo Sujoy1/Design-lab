@@ -10,6 +10,7 @@ import { Server } from "socket.io";
 
 import menteeRouter from "./router/menteeRouter.js";
 import mentorRouter from "./router/mentorRouter.js";
+import sessionRouter from "./router/sessionRouter.js";
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ mongoose.connect(
 
 app.use("/api/users/mentee", menteeRouter);
 app.use("/api/users/mentor", mentorRouter);
+app.use("/api/users/session", sessionRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is ready");

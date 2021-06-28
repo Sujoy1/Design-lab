@@ -207,4 +207,104 @@ mentorRouter.delete(
   })
 );
 
+// beginining of Shuvro's Routes : Integration for below routes is complete.
+
+// getting mentor list
+
+mentorRouter.get(
+  `/mentorlist`,
+  // isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const userMentor = await Mentor.find({});
+    if (userMentor) {
+      res.send(userMentor);
+    } else {
+      res.status(404).send({ message: "Mentor Not Found" });
+    }
+  })
+);
+
+// fetching Mentor using Mentor email 
+
+mentorRouter.get(
+  "/mentordetailsemail",
+
+  expressAsyncHandler(async (req, res) => {
+    const mentors = await Mentor.find({ user: req.body._id });
+    if (user) {
+      res.send(mentorprofile);
+    } else {
+      res.status(404).send({ message: "Mentor Not Found" });
+    }
+  })
+);
+
+// Fetch detils for a mentor using their ID
+
+mentorRouter.get(
+  `/mentorlist/:id`,
+  // isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const userMentor = await Mentor.findById(req.params.id);
+    if (userMentor) {
+      res.send(userMentor);
+    } else {
+      res.status(404).send({ message: "Mentor Not Found" });
+    }
+  })
+);
+
+// edit mentor using their ID
+
+mentorRouter.put(
+  "/mentorlist/:id",
+
+  expressAsyncHandler(async (req, res) => {
+    const mentor = await Mentor.findById(req.params.id);
+    if (mentor) {
+      mentor.name = req.body.name || mentor.name;
+      mentor.email = req.body.email || mentor.email;
+      mentor.mobilenumber = req.body.mobilenumber || mentor.mobilenumber;
+      mentor.companyName = req.body.companyName || mentor.companyName;
+      mentor.employeeIDNumber =
+        req.body.employeeIDNumber || mentor.employeeIDNumber;
+      mentor.address = req.body.address || mentor.address;
+      mentor.isAdmin = Boolean(req.body.isAdmin);
+      mentor.verificationstatus = Boolean(req.body.verificationstatus);
+      const updatedMentor = await mentor.save();
+      res.send({ message: "Mentor Updated", mentor: updatedMentor });
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
+  })
+);
+
+// Delete Mentor Route : In this case admins can't be deleted
+
+mentorRouter.delete(
+  "/mentorlist/:id",
+
+  expressAsyncHandler(async (req, res) => {
+    const user = await Mentor.findById(req.params.id);
+    if (user) {
+      if (
+        user.email === "shuvro@admin.com" ||
+        (user.email === "tester@admin.com" && user.isAdmin === true)
+      ) {
+        res.status(400).send({ message: "Can Not Delete Admin User" });
+        return;
+      }
+      if (user.email === "owner@admin.com" && user.isAdmin === true) {
+        res.send(400).send({ message: "Can Not Delete Admin User" });
+      }
+      const deleteUser = await user.remove();
+      res.send({ message: "Mentor Deleted", deleteUser });
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
+  })
+);
+
+// End of Shuvro's routes
+
 export default mentorRouter

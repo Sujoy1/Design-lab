@@ -437,7 +437,19 @@ sessionRouter.get(
   })
 );
 
+// Fetch all sessions
 
+sessionRouter.get(
+  "/findsession",
+  expressAsyncHandler(async (req, res) => {
+    const session = await sessions.find({});
+    if (session) {
+      res.send(session);
+    } else {
+      res.status(404).send({ message: "Session Not Found" });
+    }
+  })
+);
 
 
  export default sessionRouter
